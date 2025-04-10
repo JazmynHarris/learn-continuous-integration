@@ -9,6 +9,12 @@ jobs:
   "run-scripts":
     runs-on: self-hosted
     steps:
+      - name: Set up Mongosh
+        run: mongosh
+
+      - name: Use fake_so
+        run: use fake_so
+
       - name: Remove Data
         run: npm run remove-sample-data
 

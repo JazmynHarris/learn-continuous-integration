@@ -9,14 +9,9 @@ jobs:
   "run-scripts":
     runs-on: self-hosted
     steps:
-      - name: Set up Mongosh
-        run: mongosh
-
-      - name: Use fake_so
-        run: use fake_so
-
-      - name: Remove Data
-        run: npm run remove-sample-data
-
-      - name: Populate Data
-        run: npm run insert-sample-data
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Delete database
+        run: npm run remove-sample-data -- "mongodb://127.0.0.1:27017/my_library_db"
+      - name: Populate database
+        run: npm run insert-sample-data -- "mongodb://127.0.0.1:27017/my_library_db"

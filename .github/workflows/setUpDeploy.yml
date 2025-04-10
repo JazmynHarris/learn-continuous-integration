@@ -1,0 +1,16 @@
+name: Deploy Set Up
+
+on:
+  push:
+    branches:
+      - deploy
+
+jobs:
+  "run-scripts":
+    runs-on: self-hosted
+    steps:
+      - name: Remove Data
+        run: npm run remove-sample-data
+
+      - name: Populate Data
+        run: npm run insert-sample-data
